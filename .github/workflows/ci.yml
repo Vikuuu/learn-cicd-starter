@@ -1,6 +1,6 @@
 name: ci
 
-on: 
+on:
   pull_request:
     branches: [main]
 
@@ -18,8 +18,8 @@ jobs:
         with:
           go-version: '1.23.0'
 
-      - name: Go Tests & Coverage
-        run: go test -v ./... -cover
+      - name: Run unit tests
+        run: go test ./... -cover
 
   style:
     name: Style
@@ -28,11 +28,11 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: '1.23.0'
 
-      - name: Go Formatting
+      - name: Check formatting
         run: test -z $(go fmt ./...)
