@@ -6,17 +6,30 @@ import (
 )
 
 func TestGetAPIKey(t *testing.T) {
-	header := http.Header{
-		"Authorization": []string{"ApiKey thisisauthkey"},
-	}
-	want := "thisisauthkey"
-
-	got, err := GetAPIKey(header)
-	if err != nil {
-		t.Fatalf("Error should not rise: %s", err)
+	type test struct {
+		input http.Header
+		want  string
 	}
 
-	if want != got {
-		t.Fatalf("expected: %v, got: %v", want, got)
+	tests := []test{
+		{
+			input: http.Header{"Authorization": []string{"ApiKey thisisauthkey"}},
+			want:  "thisisauthkey",
+		},
+		{
+			input: http.Header{"Authorization": []string{"ApiKey token"}},
+			want:  "token",
+		},
+	}
+
+	for _, tc := range tests {
+		got, err := GetAPIKey(tc.input)
+		if err != nil {
+			t.Fatalf("Error should not rise: %s", err)
+		}
+		if tc.want != got {
+			t.Fatalf("expected: %v, got: %v", tc.want, got)
+		}
+
 	}
 }
