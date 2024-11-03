@@ -21,7 +21,6 @@ jobs:
       - name: Go Tests & Coverage
         run: go test -v ./... -cover
 
-jobs:
   style:
     name: Style
     runs-on: ubuntu-latest
