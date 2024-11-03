@@ -39,3 +39,4 @@ jobs:
 
       - name: Liniting
         run: go install honnef.co/go/tools/cmd/staticcheck@latest
+        run: staticcheck ./...
