@@ -20,3 +20,14 @@ jobs:
 
       - name: Go Tests & Coverage
         run: go test -v ./... -cover
+
+    name: Formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        
+      - name: Set up Go
+
+      - name: Go Formatting
+        run: test -z $(go fmt ./...)
